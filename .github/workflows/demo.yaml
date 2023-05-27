@@ -28,3 +28,16 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - run: echo "This is a deploy step"
+
+  artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Artifact
+        run: |
+          echo "hello" > hello.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: hello.txt
