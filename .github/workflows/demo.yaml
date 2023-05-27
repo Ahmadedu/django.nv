@@ -23,7 +23,7 @@ jobs:
       - run: exit 1
 
   prod:
-    needs: [build, test]
+    needs: [integration]
     runs-on: ubuntu-20.04
     steps:
       - run: echo "This is a deploy step"
