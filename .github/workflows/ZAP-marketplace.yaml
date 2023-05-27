@@ -7,7 +7,6 @@ on:
 jobs:
   zap_baseline:
     runs-on: ubuntu-20.04
-    needs: test
     steps:
       - run: |
            docker pull owasp/zap2docker-stable:2.10.0
