@@ -1,10 +1,9 @@
-name: Django                                  # workflow name
+name: Django                                 
 
 on:
   push:
-    branches:                                 # similar to "only" in GitLab
+    branches:                                
       - main
-
 jobs:
   zap_baseline:
     runs-on: ubuntu-20.04
