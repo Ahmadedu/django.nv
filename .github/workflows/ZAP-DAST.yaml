@@ -3,7 +3,7 @@ name: Django
 on:
   push:
     branches:                                
-      - main
+      - Xmain
 jobs:
   zap_baseline:
     runs-on: ubuntu-20.04
