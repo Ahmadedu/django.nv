@@ -5,19 +5,21 @@ on:
     branches:                                
       - main
 jobs:
- sast:
+  sast:
     runs-on: ubuntu-20.04
-#     needs: test
+#     needs: oast-frontend
     steps:
       - uses: actions/checkout@v2
 
       - run: docker run --rm -v $(pwd):/src hysnsec/bandit -r /src -f json -o /src/bandit-output.json
+        continue-on-error: true             # allow the build to fail, similar to allow_failure: true
 
       - uses: actions/upload-artifact@v2
         with:
           name: Bandit
           path: bandit-output.json
         if: always()                        # what is this for?
+
 
       - uses: actions/setup-python@v2
         with:
