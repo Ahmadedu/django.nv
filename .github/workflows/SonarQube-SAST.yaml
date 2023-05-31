@@ -3,7 +3,7 @@ name: Django
 on:
   push:
     branches:                               
-      - main
+      - Xmain
 
 jobs:
   build:
