@@ -7,7 +7,17 @@ jobs:
       - run: |                              # similar to "script" in GitLab
           pip install -r requirements.txt
           python manage.py check
+  
+  release:
+    machine: true                                        # What is this for?
+    steps:
+      - checkout
 
+      - run: |
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker build -t $DOCKER_USERNAME/django.nv .   # Build the application into Docker image
+          docker push $DOCKER_USERNAME/django.nv         # Push the image into registry
+  
   test:
     docker:
       - image: python:3.6
@@ -49,6 +59,11 @@ workflows:
   version: 2
   django:
     jobs:
+      - release:
+          filters:          # Run the job with a specific branch
+            branches:
+              only:
+                - main
       - build:
           filters:          # Run the job with a specific branch
             branches:
